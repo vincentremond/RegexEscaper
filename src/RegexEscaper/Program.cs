@@ -14,7 +14,10 @@ namespace RegexEscaper
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+
+            var text = Clipboard.GetText();
+            
+            Application.Run(new MainForm(text));
         }
     }
 }

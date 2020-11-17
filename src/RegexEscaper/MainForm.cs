@@ -7,9 +7,10 @@ namespace RegexEscaper
 {
     public partial class MainForm : Form
     {
-        public MainForm()
+        public MainForm(string text)
         {
             InitializeComponent();
+            textBoxOriginal.Text = text;
         }
 
         private void buttonInit_Click(object sender, EventArgs e)
@@ -53,6 +54,11 @@ namespace RegexEscaper
             return string.IsNullOrWhiteSpace(value)
                 ? FSharpOption<string>.None
                 : FSharpOption<string>.Some(value);
+        }
+
+        private void textBoxRegex_TextChanged(object sender, EventArgs e)
+        {
+            textBoxCSharp.Text = ObjectDumper.Dump(textBoxRegex.Text, DumpStyle.CSharp);
         }
     }
 }
