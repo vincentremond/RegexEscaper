@@ -38,6 +38,7 @@
             this.labelName = new System.Windows.Forms.Label();
             this.textBoxGroupName = new System.Windows.Forms.TextBox();
             this.buttonReplace = new System.Windows.Forms.Button();
+            this.textBoxCSharp = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // buttonInit
@@ -69,6 +70,7 @@
             // textBoxOriginal
             // 
             this.textBoxOriginal.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxOriginal.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.textBoxOriginal.HideSelection = false;
             this.textBoxOriginal.Location = new System.Drawing.Point(12, 12);
             this.textBoxOriginal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -81,12 +83,14 @@
             // textBoxRegex
             // 
             this.textBoxRegex.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxRegex.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.textBoxRegex.HideSelection = false;
             this.textBoxRegex.Location = new System.Drawing.Point(12, 64);
             this.textBoxRegex.Multiline = true;
             this.textBoxRegex.Name = "textBoxRegex";
-            this.textBoxRegex.Size = new System.Drawing.Size(438, 305);
+            this.textBoxRegex.Size = new System.Drawing.Size(438, 224);
             this.textBoxRegex.TabIndex = 4;
+            this.textBoxRegex.TextChanged += new System.EventHandler(this.textBoxRegex_TextChanged);
             // 
             // textBoxReplacement
             // 
@@ -133,11 +137,21 @@
             this.buttonReplace.UseVisualStyleBackColor = true;
             this.buttonReplace.Click += new System.EventHandler(this.buttonReplace_Click);
             // 
+            // textBoxCSharp
+            // 
+            this.textBoxCSharp.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.textBoxCSharp.Location = new System.Drawing.Point(12, 294);
+            this.textBoxCSharp.Multiline = true;
+            this.textBoxCSharp.Name = "textBoxCSharp";
+            this.textBoxCSharp.Size = new System.Drawing.Size(438, 75);
+            this.textBoxCSharp.TabIndex = 10;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(462, 433);
+            this.Controls.Add(this.textBoxCSharp);
             this.Controls.Add(this.buttonReplace);
             this.Controls.Add(this.textBoxGroupName);
             this.Controls.Add(this.labelName);
@@ -155,6 +169,8 @@
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.TextBox textBoxCSharp;
 
         private System.Windows.Forms.Button buttonInit;
         private System.Windows.Forms.CheckBox checkBoxFull;
