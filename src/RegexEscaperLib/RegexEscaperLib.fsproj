@@ -1,13 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>net5.0-windows</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.fs" />
         <Compile Include="Common.fs" />
         <Compile Include="RegexModifier.fs" />
+        <Compile Include="RegexEscape.fs" />
+        <Compile Include="RegexSuggestions.fs" />
+        <Compile Include="ReplacementConverter.fs" />
     </ItemGroup>
 
 </Project>

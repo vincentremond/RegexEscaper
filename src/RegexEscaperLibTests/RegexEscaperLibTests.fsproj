@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0-windows</TargetFramework>
     <IsPackable>false</IsPackable>
     <GenerateProgramFile>false</GenerateProgramFile>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="paket.references" />
     <Compile Include="CommonTests.fs" />
     <Compile Include="ParserTests.fs" />
-    <Content Include="paket.references" />
+    <Compile Include="EscapeTest.fs" />
+    <Compile Include="TestRegexGroups.fs" />
+    <Compile Include="ReplaceTests.fs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RegexEscaperLib\RegexEscaperLib.fsproj" />

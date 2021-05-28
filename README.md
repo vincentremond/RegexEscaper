@@ -14,3 +14,9 @@ Usage :
 6. Click replace and restart at 3 until you have a regex you like
 
 ![Demo](demo.gif)
+
+
+## TODO
+
+- [ ] Uncheck full
+- [ ] Constant regex check

@@ -1,4 +1,7 @@
-﻿using System;
+using System;
+using System.Drawing;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Microsoft.FSharp.Core;
 using RegexEscaperLib;
@@ -10,23 +13,42 @@ namespace RegexEscaper
         public MainForm(string text)
         {
             InitializeComponent();
-            textBoxOriginal.Text = text;
+            Init(text);
         }
 
-        private void buttonInit_Click(object sender, EventArgs e)
+        private void buttonInit_Click(object sender, EventArgs e) => Init(textBoxOriginal.Text);
+
+        private void Init(string text)
         {
-            textBoxRegex.Text = RegexModifier.simpleEscape(textBoxOriginal.Text, checkBoxFull.Checked);
+            textBoxOriginal.Text = text;
+            richTextBoxRegex.Text = RegexEscape.simpleEscape(
+                fullMatch: checkBoxFull.Checked,
+                originalText: textBoxOriginal.Text
+            );
+            UpdateSuggestions();
         }
 
         private void buttonReplace_Click(object sender, EventArgs e)
         {
-            var result = RegexModifier.substitute(
-                textBoxRegex.Text,
-                textBoxRegex.SelectionStart,
-                textBoxRegex.SelectionLength,
-                textBoxReplacement.Text,
+            ReplacePart(
+                richTextBoxRegex.Text,
+                richTextBoxRegex.SelectionStart,
+                richTextBoxRegex.SelectionLength,
+                textBoxGroupReplacement.Text,
                 Option(textBoxGroupName.Text),
                 textBoxOriginal.Text
+            );
+        }
+
+        private void ReplacePart(string originalRegex, int selectionStart, int selectionLength, string replacement, FSharpOption<string> groupName, string sampleValue)
+        {
+            var result = RegexModifier.substitute(
+                originalRegex,
+                selectionStart,
+                selectionLength,
+                replacement,
+                groupName,
+                sampleValue
             );
 
             switch (result)
@@ -39,9 +61,9 @@ namespace RegexEscaper
 
                 case RegexModifier.SubstitutionResult.Success success:
                 {
-                    textBoxReplacement.Text = string.Empty;
+                    textBoxGroupReplacement.Text = string.Empty;
                     textBoxGroupName.Text = string.Empty;
-                    textBoxRegex.Text = success.Item.NewRegex;
+                    richTextBoxRegex.Text = success.Item.NewRegex;
                     return;
                 }
 
@@ -56,9 +78,84 @@ namespace RegexEscaper
                 : FSharpOption<string>.Some(value);
         }
 
-        private void textBoxRegex_TextChanged(object sender, EventArgs e)
+        private void buttonCopyCSharp_Click(object sender, EventArgs e)
         {
-            textBoxCSharp.Text = ObjectDumper.Dump(textBoxRegex.Text, DumpStyle.CSharp);
+            Clipboard.SetText(ObjectDumper.Dump(richTextBoxRegex.Text, DumpStyle.CSharp));
+        }
+
+        private void richTextBoxRegex_TextChanged(object sender, EventArgs e)
+        {
+            ValidateRegex();
+            ComputeTextReplacement();
+        }
+
+        private void richTextBoxRegex_SelectionChanged(object sender, EventArgs e) => UpdateSuggestions();
+        private void textBoxOriginal_TextChanged(object sender, EventArgs e) => ComputeTextReplacement();
+        private void textBoxFullReplacement_TextChanged(object sender, EventArgs e) => ComputeTextReplacement();
+
+        private void ValidateRegex()
+        {
+            bool IsValid(string input, string pattern)
+            {
+                try
+                {
+                    return Regex.IsMatch(input, pattern);
+                }
+                catch (RegexParseException)
+                {
+                    return false;
+                }
+            }
+
+            richTextBoxRegex.BackColor = IsValid(textBoxOriginal.Text, richTextBoxRegex.Text) ? default : Color.LightPink;
+        }
+
+        private void UpdateSuggestions()
+        {
+            var input = richTextBoxRegex.SelectedText.Length > 0 ? richTextBoxRegex.SelectedText : richTextBoxRegex.Text;
+            dataGridViewSuggestions.DataSource = RegexSuggestions.get(input);
+        }
+
+        private void ComputeTextReplacement()
+        {
+            try
+            {
+                var pattern = richTextBoxRegex.Text;
+                var input = textBoxOriginal.Text;
+                var replacement = textBoxFullReplacement.Text;
+                textBoxReplacementExample.Text = Regex.Replace(input, pattern, replacement);
+            }
+            catch (Exception e)
+            {
+                textBoxReplacementExample.Text = e.ToString();
+            }
+        }
+
+        private void dataGridViewSuggestions_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var item = (RegexSuggestions.SuggestionItem)dataGridViewSuggestions.Rows[e.RowIndex].DataBoundItem;
+            var (start, length) = richTextBoxRegex.SelectionLength == 0
+                ? (0, richTextBoxRegex.Text.Length)
+                : (richTextBoxRegex.SelectionStart, richTextBoxRegex.SelectionLength);
+
+            ReplacePart(
+                richTextBoxRegex.Text,
+                start,
+                length,
+                item.Regex,
+                Option(textBoxGroupName.Text),
+                textBoxOriginal.Text
+            );
+
+            if (!string.IsNullOrEmpty(item.Replacement) && textBoxFullReplacement.Text.Length == 0)
+            {
+                textBoxFullReplacement.Text = item.Replacement;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

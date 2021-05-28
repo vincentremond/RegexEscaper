@@ -73,7 +73,3 @@ module RegexModifier =
         match parsed with
         | RegexParseResult.Success s -> tryGetNewRegex s replacement groupName sampleValue
         | RegexParseResult.Failure f -> SubstitutionResult.Failure { Message = f.Message }
-
-    let simpleEscape str full =
-        Regex.Escape str
-        |> Common.cond full (sprintf "^%s$")
