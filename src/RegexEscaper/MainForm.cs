@@ -1,6 +1,5 @@
 using System;
 using System.Drawing;
-using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Microsoft.FSharp.Core;
@@ -112,8 +111,16 @@ namespace RegexEscaper
 
         private void UpdateSuggestions()
         {
-            var input = richTextBoxRegex.SelectedText.Length > 0 ? richTextBoxRegex.SelectedText : richTextBoxRegex.Text;
-            dataGridViewSuggestions.DataSource = RegexSuggestions.get(input);
+            try
+            {
+                var input = richTextBoxRegex.SelectedText.Length > 0 ? richTextBoxRegex.SelectedText : richTextBoxRegex.Text;
+                var suggestions = RegexSuggestions.get(input);
+                dataGridViewSuggestions.DataSource = suggestions;
+            }
+            catch (Exception e)
+            {
+                textBoxReplacementExample.Text = e.ToString();
+            }
         }
 
         private void ComputeTextReplacement()
@@ -155,7 +162,7 @@ namespace RegexEscaper
 
         private void button1_Click(object sender, EventArgs e)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

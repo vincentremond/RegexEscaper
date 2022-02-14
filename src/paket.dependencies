@@ -1,9 +1,10 @@
 source https://api.nuget.org/v3/index.json
 
 storage: none
-framework: net5.0-windows
+framework: auto-detect
 nuget FsUnit
 nuget Microsoft.NET.Test.Sdk
 nuget NUnit3TestAdapter
 nuget ObjectDumper.NET
 nuget System.Drawing.Common
+nuget YamlDotNet

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <IsPackable>false</IsPackable>
     <GenerateProgramFile>false</GenerateProgramFile>
   </PropertyGroup>
@@ -12,6 +12,7 @@
     <Compile Include="EscapeTest.fs" />
     <Compile Include="TestRegexGroups.fs" />
     <Compile Include="ReplaceTests.fs" />
+    <Compile Include="RegexSuggestionsTest.fs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RegexEscaperLib\RegexEscaperLib.fsproj" />

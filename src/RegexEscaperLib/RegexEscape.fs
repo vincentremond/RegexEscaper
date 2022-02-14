@@ -10,9 +10,9 @@ module RegexEscape =
         | Escaped of string
         | Raw of string
 
-    let private explodeAsParts (replacements: SpecialReplace list) (parts: seq<SplitPart>): seq<SplitPart> =
+    let private explodeAsParts (replacements: SpecialReplace list) (parts: seq<SplitPart>) : seq<SplitPart> =
 
-        let explodeAsParts' (replacement: SpecialReplace) (str: string): seq<SplitPart> =
+        let explodeAsParts' (replacement: SpecialReplace) (str: string) : seq<SplitPart> =
             replacement.Pattern.Split(str)
             |> Seq.map (fun x -> Raw x)
             |> Common.sandwich (Escaped replacement.Replacement)
@@ -25,7 +25,7 @@ module RegexEscape =
                     | Raw r -> yield! explodeAsParts' h r
             }
 
-        let rec explodeAsParts'' (replacements: SpecialReplace list) (parts: seq<SplitPart>): seq<SplitPart> =
+        let rec explodeAsParts'' (replacements: SpecialReplace list) (parts: seq<SplitPart>) : seq<SplitPart> =
             match replacements with
             | head :: tail -> explodeAsParts'' tail (temp head parts)
             | [] -> parts
@@ -39,10 +39,11 @@ module RegexEscape =
 
     let simpleEscape fullMatch originalText =
         let replacements =
-            [ { Pattern = Regex "[\\s\\t\\r\\n]{2,}"
-                Replacement = "[\\s\\t\\r\\n]+" }
-              { Pattern = Regex " "
-                Replacement = " " } ]
+            [ { Pattern = Regex "[\\s\\t\\r\\n]{2,}" ; Replacement = "[\\s\\t\\r\\n]+" }
+              { Pattern = Regex @"\]" ; Replacement = @"\]" }
+              { Pattern = Regex @"\)" ; Replacement = @"\)" }
+              { Pattern = Regex @"\}" ; Replacement = @"\}" }
+              { Pattern = Regex " " ; Replacement = " " } ]
 
         let x =
             explodeAsParts replacements [| Raw originalText |]
