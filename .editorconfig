@@ -1,0 +1,5 @@
+root = true
+
+[*.{fs,fsx}]
+fsharp_multiline_bracket_style = stroustrup
+fsharp_multi_line_lambda_closing_newline = true

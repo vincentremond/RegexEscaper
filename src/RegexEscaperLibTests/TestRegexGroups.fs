@@ -9,8 +9,7 @@ open System.Text.RegularExpressions
 let ``Simple test`` () =
     let input = "02/03/2021"
 
-    let pattern =
-        @"((?<Day>\d\d)/(?<Month>\d\d)/(?<Year>\d\d(\d\d)))"
+    let pattern = @"((?<Day>\d\d)/(?<Month>\d\d)/(?<Year>\d\d(\d\d)))"
 
     let replace = "${Year}-${Month}-${Day}"
     let zematch = Regex.Match(input, pattern)

@@ -38,15 +38,30 @@ module RegexEscape =
         | Raw r -> Regex.Escape r
 
     let simpleEscape fullMatch originalText =
-        let replacements =
-            [ { Pattern = Regex "[\\s\\t\\r\\n]{2,}" ; Replacement = "[\\s\\t\\r\\n]+" }
-              { Pattern = Regex @"\]" ; Replacement = @"\]" }
-              { Pattern = Regex @"\)" ; Replacement = @"\)" }
-              { Pattern = Regex @"\}" ; Replacement = @"\}" }
-              { Pattern = Regex " " ; Replacement = " " } ]
+        let replacements = [
+            {
+                Pattern = Regex "[\\s\\t\\r\\n]{2,}"
+                Replacement = "[\\s\\t\\r\\n]+"
+            }
+            {
+                Pattern = Regex @"\]"
+                Replacement = @"\]"
+            }
+            {
+                Pattern = Regex @"\)"
+                Replacement = @"\)"
+            }
+            {
+                Pattern = Regex @"\}"
+                Replacement = @"\}"
+            }
+            {
+                Pattern = Regex " "
+                Replacement = " "
+            }
+        ]
 
-        let x =
-            explodeAsParts replacements [| Raw originalText |]
+        let x = explodeAsParts replacements [| Raw originalText |]
 
         x
         |> Seq.map renderPart
