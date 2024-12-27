@@ -10,7 +10,10 @@ type SuggestionItem = {
     Replacement: string
 }
 
-type Sample = { Input: string; Output: string }
+type Sample = {
+    Input: string
+    Output: string
+}
 
 type Replacement = {
     Replacement: string
@@ -119,7 +122,10 @@ let private RegList = [
     {
         Name = "Wildcard 4"
         Regex = @".*"
-        Examples = [| ""; "Bonjour" |]
+        Examples = [|
+            ""
+            "Bonjour"
+        |]
         Replacements = [||]
     }
     {
@@ -200,5 +206,9 @@ let get (input: string) : SuggestionItem array =
         regs |> Seq.filter (fun (_, _, _, r) -> r.IsMatch(input)) |> Seq.toArray
 
     filter
-    |> Seq.map (fun (n, s, r, _) -> { Name = n; Regex = s; Replacement = r })
+    |> Seq.map (fun (n, s, r, _) -> {
+        Name = n
+        Regex = s
+        Replacement = r
+    })
     |> Seq.toArray

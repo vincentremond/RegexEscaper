@@ -4,7 +4,6 @@ open NUnit.Framework
 open FsUnit
 open System.Text.RegularExpressions
 
-
 [<Test>]
 let ``Simple test`` () =
     let input = "02/03/2021"
@@ -25,6 +24,5 @@ let ``Simple test`` () =
         |> Seq.skip 1
         |> Seq.filter (fun (i, g) -> g.Name |> parseInt |> not)
         |> Seq.toArray
-
 
     zematch |> should equal 1

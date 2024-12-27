@@ -30,9 +30,7 @@ let ``Full replacement no match`` () =
     let result = substitute "^abcdefghij$" 2 3 ".." (Some "GroupName") "abcdefghij"
 
     let expected =
-        SubstitutionResult.Failure {
-            Message = "Substitution “..” doesn't match “bcd”."
-        }
+        SubstitutionResult.Failure { Message = "Substitution “..” doesn't match “bcd”." }
 
     result |> should equal expected
 
@@ -40,10 +38,7 @@ let ``Full replacement no match`` () =
 let ``Full replacement with group`` () =
     let result = substitute "^abcdefghij$" 2 3 ".+" (Some "GroupName") "abcdefghij"
 
-    let expected =
-        SubstitutionResult.Success {
-            NewRegex = "^a(?<GroupName>.+)efghij$"
-        }
+    let expected = SubstitutionResult.Success { NewRegex = "^a(?<GroupName>.+)efghij$" }
 
     result |> should equal expected
 

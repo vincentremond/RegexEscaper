@@ -4,7 +4,6 @@ open NUnit.Framework
 open FsUnit
 open RegexEscaperLib
 
-
 [<Test>]
 let ``Simple escape`` () =
     let input =

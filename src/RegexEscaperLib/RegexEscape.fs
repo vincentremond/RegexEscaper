@@ -4,7 +4,10 @@ open System.Text.RegularExpressions
 
 module RegexEscape =
 
-    type private SpecialReplace = { Pattern: Regex; Replacement: string }
+    type private SpecialReplace = {
+        Pattern: Regex
+        Replacement: string
+    }
 
     type private SplitPart =
         | Escaped of string
