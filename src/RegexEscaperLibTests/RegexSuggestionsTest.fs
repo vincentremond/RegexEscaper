@@ -6,4 +6,4 @@ open FsUnit
 
 [<Test>]
 let ``Check list`` () =
-    RegexSuggestions.checkList() |> should equal () 
+    RegexSuggestions.checkList () |> should equal ()
