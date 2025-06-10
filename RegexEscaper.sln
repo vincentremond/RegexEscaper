@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegexEscaper", "RegexEscaper\RegexEscaper.csproj", "{A0750BB6-98A1-4752-B63E-4FAFD9B25E4F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegexEscaper", "src\RegexEscaper\RegexEscaper.csproj", "{A0750BB6-98A1-4752-B63E-4FAFD9B25E4F}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "RegexEscaperLib", "RegexEscaperLib\RegexEscaperLib.fsproj", "{C0BF2484-1D2A-402C-918E-12CA4C51273C}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "RegexEscaperLib", "src\RegexEscaperLib\RegexEscaperLib.fsproj", "{C0BF2484-1D2A-402C-918E-12CA4C51273C}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "RegexEscaperLibTests", "RegexEscaperLibTests\RegexEscaperLibTests.fsproj", "{E38B4FE1-1026-4F4E-9A76-2705A1287428}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "RegexEscaperLibTests", "src\RegexEscaperLibTests\RegexEscaperLibTests.fsproj", "{E38B4FE1-1026-4F4E-9A76-2705A1287428}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_global", "_global", "{583B2362-F40E-4C99-9A20-8AC865635755}"
 ProjectSection(SolutionItems) = preProject

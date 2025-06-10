@@ -2,5 +2,5 @@
 
 open System.Runtime.CompilerServices
 
-[<assembly:InternalsVisibleTo("RegexEscaperLibTests")>]
+[<assembly: InternalsVisibleTo("RegexEscaperLibTests")>]
 do ()
