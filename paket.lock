@@ -3,12 +3,12 @@ RESTRICTION: == net9.0-windows7.0
 NUGET
   remote: https://api.nuget.org/v3/index.json
     FSharp.Core (9.0.300)
-    FsUnit (7.0.1)
+    FsUnit (7.1.1)
       FSharp.Core (>= 5.0.2)
       NUnit (>= 4.0.1)
     Microsoft.NET.Test.Sdk (17.14.1)
     NUnit (4.3.2)
     NUnit3TestAdapter (5.0)
     ObjectDumper.NET (4.3.2)
-    System.Drawing.Common (9.0.6)
+    System.Drawing.Common (9.0.7)
     YamlDotNet (16.3)
