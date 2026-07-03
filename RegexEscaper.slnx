@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/_global/">
+    <File Path="../.gitignore" />
+    <File Path="../README.md" />
+    <File Path="paket.dependencies" />
+  </Folder>
+  <Project Path="src/RegexEscaper/RegexEscaper.csproj" />
+  <Project Path="src/RegexEscaperLib/RegexEscaperLib.fsproj" />
+  <Project Path="src/RegexEscaperLibTests/RegexEscaperLibTests.fsproj" />
+</Solution>
